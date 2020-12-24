@@ -89,7 +89,7 @@ Account  open_account(char name[], char joint_name[], uint8_t age[], char pan[],
 Account  credit(Account a, float amount)
 {
 	a.acc_bal = a.acc_bal + amount;
-	a.credit_count = a.credit_count + 1
+	a.credit_count = a.credit_count + 1;
 	return a;
 }
 Account  debit(Account a, float amount)
@@ -109,7 +109,7 @@ Account  debit(Account a, float amount)
 	{
 		a.acc_bal = a.acc_bal - 1000;
 	}
-	a.debit_count = a.debit_count + 1
+	a.debit_count = a.debit_count + 1;
 
 	return a;
 }
@@ -151,28 +151,13 @@ uint64_t category_customers(char account_type[])
 	      break;
 	   case JOINT_ACCOUNT  :
 		   cat_count = num_JOINT_ACCOUNT;
+		   break;
 	   case STUDENT_ACCOUNT  :
 		   cat_count = num_STUDENT_ACCOUNT;
 	      break;
 	}
 
 	return cat_count;
-}
-
-// private function
-Account_num gen_acc_num(char account_type[])
-{
-	uint8_t branch_acc_num = 0;
-	char branch_acc_num_char[];
-	Account_num a_num;
-	strcpy(a_num.bank_code, '12'); // 2
-	strcpy(a_num.area_code, '2020'); // 4
-	strcpy(a_num.account_type, account_type); // 2
-
-	branch_acc_num = category_customers(a_num.account_type);
-	branch_acc_num = branch_acc_num + 1;
-	strcpy(a_num.acc_num_branch, tostring(branch_acc_num_char,branch_acc_num)); // 4
-
 }
 
 // convert int to string - took from internet
@@ -194,3 +179,21 @@ void tostring(char str[], int num)
     }
     str[len] = '\0';
 }
+
+// private function
+Account_num gen_acc_num(char account_type[])
+{
+	uint8_t branch_acc_num = 0;
+	char branch_acc_num_char[4];
+	Account_num a_num;
+	strcpy(a_num.bank_code, '12'); // 2
+	strcpy(a_num.area_code, '2020'); // 4
+	strcpy(a_num.account_type, account_type); // 2
+
+	branch_acc_num = category_customers(a_num.account_type);
+	branch_acc_num = branch_acc_num + 1;
+	strcpy(a_num.acc_num_branch, tostring(branch_acc_num_char,branch_acc_num)); // 4
+
+}
+
+
