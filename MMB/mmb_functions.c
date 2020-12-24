@@ -52,7 +52,7 @@ Account  open_account(char name[], char joint_name[], uint8_t age[], char pan[],
 	{
 		if (init_deposit < 2000)
 		{
-			acc.acc_bal = init_deposit - 1000
+			acc.acc_bal = init_deposit - 1000;
 		}
 	}
 	else
